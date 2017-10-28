@@ -1,8 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Counter from './Counter';
+import {createStore} from 'redux';
+import reducer from './reducers';
+import {increaseAction, decreaseAction, addAction, minusAction} from './actions';
 import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+console.log(createStore);
+const store = createStore(reducer);
+
+const render = () => {
+    ReactDOM.render(
+        <Counter
+            val={store.getState()}
+            onIncrease={() => {
+                store.dispatch(increaseAction())
+            }}
+            onDecrease={() => {
+                store.dispatch(decreaseAction())
+            }}
+        />,
+        document.getElementById('root')
+    );
+};
+
+render();
+
+const unsubscribe = store.subscribe(() => {
+    render();
+    console.log(store.getState());
+});
+
+
 registerServiceWorker();
