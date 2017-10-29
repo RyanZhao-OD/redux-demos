@@ -14,7 +14,7 @@ export default (state = [], action) => {
             break;
         case TOGGLE_TODO:
             return state.map(item => {
-                return (action.id === item.id)
+                return action.id === item.id
                     ? {...item, completed: !item.completed}
                     : item;
             });
