@@ -7,7 +7,3 @@ module.exports = combineReducers({
     age: ageReducer
 });
 
-// module.exports = (state = defaultState, action) => ({
-//     name: nameReducer(state.name, action),
-//     age: ageReducer(state.age, action)
-// });

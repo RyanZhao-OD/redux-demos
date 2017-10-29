@@ -1,34 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Counter from './Counter';
 import {createStore} from 'redux';
 import reducer from './reducers';
-import {increaseAction, decreaseAction, addAction, minusAction} from './actions';
+import CounterContainer from './container/CounterContainer';
+import { Provider } from 'react-redux';
+
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-console.log(createStore);
 const store = createStore(reducer);
 
-const render = () => {
-    ReactDOM.render(
-        <Counter
-            val={store.getState()}
-            onIncrease={() => {
-                store.dispatch(increaseAction())
-            }}
-            onDecrease={() => {
-                store.dispatch(decreaseAction())
-            }}
-        />,
-        document.getElementById('root')
-    );
-};
-
-render();
+ReactDOM.render(
+    <Provider store={store}>
+        <CounterContainer />
+    </Provider>,
+    document.getElementById('root')
+);
 
 const unsubscribe = store.subscribe(() => {
-    render();
     console.log(store.getState());
 });
 
