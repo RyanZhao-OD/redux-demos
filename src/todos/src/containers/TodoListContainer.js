@@ -8,8 +8,6 @@ import {toggleTodoAction} from '../actions';
 import {FILTER_SHOW_ALL, FILTER_SHOW_COMPLETED, FILTER_SHOW_ACTIVE} from '../constants';
 
 const getVisibleTodoList = (todos, filter) => {
-    console.log(todos);
-    console.log(filter);
     switch (filter) {
         case FILTER_SHOW_ALL:
             return todos;
@@ -26,19 +24,15 @@ const getVisibleTodoList = (todos, filter) => {
 
 
 };
-const mapStateToProps = (state, ownProps) => {
-    return {
-        todos: getVisibleTodoList(state.todos, state.visibilityFilter)
-    };
-};
+const mapStateToProps = (state, ownProps) => ({
+    todos: getVisibleTodoList(state.todos, state.visibilityFilter)
+});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        onToggleTodo(id) {
-            dispatch(toggleTodoAction(id));
-        }
-    };
-};
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onToggleTodo(id) {
+        dispatch(toggleTodoAction(id));
+    }
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
