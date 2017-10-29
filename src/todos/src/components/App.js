@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import TodoListContainer from '../containers/TodoListContainer';
+import AddTodoContainer from '../containers/AddTodoContainer';
+import Footer from './Footer';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-
-      </div>
-    );
-  }
+export default class App extends Component {
+    render() {
+        return (
+            <div>
+                <AddTodoContainer />
+                <TodoListContainer />
+                <Footer />
+            </div>
+        );
+    }
 }
-
-export default App;
