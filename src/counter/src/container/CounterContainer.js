@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Counter from '../components/Counter';
 import {connect} from 'react-redux';
-import {increaseAction, decreaseAction} from '../actions';
+import {increaseAction, decreaseAction, addAction, minusAction} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -16,6 +16,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onDecrease() {
             dispatch(decreaseAction());
+        },
+        onAdd(val) {
+            dispatch(addAction(val));
+        },
+        onMinus(val) {
+            dispatch(minusAction(val));
         }
     };
 };
